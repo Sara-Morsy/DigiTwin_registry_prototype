@@ -1,0 +1,21 @@
+
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+---
+<BaseLayout title="Schema">
+  <Navbar slot="nav" />
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h1 class="text-3xl font-bold">Schema</h1>
+    <ul class="list-disc pl-6 text-sm mt-4">
+      <li>trip_id (string)</li>
+      <li>person (string)</li>
+      <li>origin (string)</li>
+      <li>destination (string)</li>
+      <li>start_date (date)</li>
+      <li>end_date (date)</li>
+      <li>cost (number)</li>
+      <li>notes (string)</li>
+    </ul>
+  </section>
+</BaseLayout>

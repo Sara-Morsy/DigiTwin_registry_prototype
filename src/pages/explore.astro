@@ -1,0 +1,13 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import ExploreApp from "../components/ExploreApp.jsx";
+---
+<BaseLayout title="Explore the database">
+  <Navbar slot="nav" />
+  <section class="mx-auto max-w-6xl px-6 py-12">
+    <h1 class="text-3xl font-bold mb-2">Explore the database</h1>
+    <p class="text-slate-600 mb-6">Search by ID, filter by Scientific Domain and Node, switch views.</p>
+    <ExploreApp client:load />
+  </section>
+</BaseLayout>

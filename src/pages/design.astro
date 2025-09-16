@@ -1,0 +1,26 @@
+
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+---
+<BaseLayout title="Design Meta">
+  <Navbar slot="nav" />
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h1 class="text-3xl font-bold">Design Meta</h1>
+    <form class="grid gap-4 max-w-xl mt-6" method="post" action="/schema">
+      <label class="grid gap-1">
+        <span class="text-sm font-medium">Project title</span>
+        <input name="title" class="border rounded-lg px-3 py-2" placeholder="Weekend trips" required />
+      </label>
+      <label class="grid gap-1">
+        <span class="text-sm font-medium">People</span>
+        <input name="people" class="border rounded-lg px-3 py-2" placeholder="Alice, Bob" />
+      </label>
+      <label class="grid gap-1">
+        <span class="text-sm font-medium">Max trips</span>
+        <input name="maxTrips" type="number" min="1" value="18" class="border rounded-lg px-3 py-2" />
+      </label>
+      <button class="bg-black text-white rounded-xl px-4 py-2 w-max">Continue →</button>
+    </form>
+  </section>
+</BaseLayout>

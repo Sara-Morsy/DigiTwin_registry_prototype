@@ -1,0 +1,19 @@
+
+---
+const items = [
+  {title:'Islands Architecture', body:'Hydrate only what’s interactive for faster pages.'},
+  {title:'Content-first', body:'Markdown, MDX, and CMS-friendly by default.'},
+  {title:'Any UI Library', body:'Use React, Vue, Svelte, Solid, or none.'},
+  {title:'Zero JS by default', body:'Ship no JS to the client unless you add it.'},
+];
+---
+<section class="mx-auto max-w-6xl px-6 py-16">
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    {items.map((f) => (
+      <div class="rounded-2xl border bg-white p-6 shadow-sm">
+        <div class="font-semibold">{f.title}</div>
+        <p class="mt-2 text-sm text-slate-600">{f.body}</p>
+      </div>
+    ))}
+  </div>
+</section>

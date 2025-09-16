@@ -1,0 +1,16 @@
+
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+---
+<BaseLayout title="Preliminary results">
+  <Navbar slot="nav" />
+  <section class="mx-auto max-w-5xl px-6 py-12">
+    <h1 class="text-3xl font-bold">Preliminary data page</h1>
+    <ul class="mt-4 space-y-1">
+      <li>Total trips: <strong>18</strong> (example)</li>
+      <li>People: <strong>Alice, Bob</strong></li>
+      <li>Next: validate headers, add API route, persist uploads.</li>
+    </ul>
+  </section>
+</BaseLayout>

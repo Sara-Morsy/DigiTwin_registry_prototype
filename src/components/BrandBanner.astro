@@ -1,0 +1,51 @@
+---
+/**
+ * BrandBanner.astro
+ * A centered brand/logo band placed between sections.
+ *
+ * Props:
+ *  - src        (string)  : image path (defaults to /digitwin-logo.png in /public)
+ *  - alt        (string)  : accessible alt text
+ *  - href       (string?) : wrap the logo in a link (optional)
+ *  - caption    (string?) : small text under the logo (optional)
+ *  - bg         (string)  : background classes (default "bg-white")
+ *  - pad        (string)  : padding classes (default "py-10 sm:py-12 lg:py-16")
+ *  - maxW       (string)  : container max width (default "max-w-6xl")
+ *  - sizes      (string)  : responsive sizes attr (default "(min-width:1024px) 28rem, (min-width:640px) 20rem, 16rem")
+ *  - className  (string)  : extra classes for the <img> (merges with defaults)
+ *
+ * Usage:
+ *  <BrandBanner />
+ *  <BrandBanner href="/" caption="DigiTWIN" />
+ */
+const {
+  src = import.meta.env.BASE_URL + "digitwin-logo.png",
+  alt = "DigiTWIN logo",
+  href = "",
+  caption = "",
+  bg = "bg-white",
+  pad = "py-10 sm:py-12 lg:py-16",
+  maxW = "max-w-6xl",
+  sizes = "(min-width:1024px) 28rem, (min-width:640px) 20rem, 16rem",
+  className = "",
+} = Astro.props;
+
+const imgClasses =
+  `w-64 sm:w-80 lg:w-[48rem] h-auto max-w-full` +
+  (className ? ` ${className}` : "");
+---
+
+<section class={bg}>
+  <div class={`mx-auto ${maxW} px-6 ${pad} flex flex-col items-center justify-center text-center`}>
+    {href ? (
+      <a href={href} class="inline-block" aria-label={alt}>
+        <img src={src} alt={alt} class={imgClasses} sizes={sizes} loading="eager" decoding="async" />
+      </a>
+    ) : (
+      <img src={src} alt={alt} class={imgClasses} sizes={sizes} loading="eager" decoding="async" />
+    )}
+    {caption && (
+      <p class="mt-3 text-sm text-slate-500">{caption}</p>
+    )}
+  </div>
+</section>
