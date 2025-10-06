@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+
+const base = import.meta.env.BASE_URL || "/";
+const crumbs = [
+  { href: base, label: "Home" },
+  { href: base + "what-is/", label: "What is DigiTwin?" }
+];
+---
+
+<BaseLayout title="The DigiTwin Initiative">
+  <Navbar slot="nav" />
+
+  <!-- Full-width banner -->
+  <img
+    src={base + "digitwin-logo.png"}
+    alt="DigiTwin banner"
+    class="w-full h-56 md:h-80 object-cover"
+    loading="eager"
+  />
+
+  <main class="mx-auto max-w-4xl px-6 py-12 prose prose-slate dark:prose-invert">
+    <nav class="text-sm mb-6 not-prose">
+      <ol class="flex flex-wrap gap-2 text-slate-500">
+        {crumbs.map((c, i) => (
+          <li>
+            <a class="hover:underline" href={c.href}>{c.label}</a>{i < crumbs.length - 1 ? " / " : ""}
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <h1 class="font-bold">DigiTwin: Toward FAIR and Reproducible Infrastructure for Digital Twin Research</h1>
+
+    <h2 class="font-bold">Defining the Digital Twin</h2>
+    <p>
+      According to the Digital Twin Consortium, a digital twin is a virtual representation of real-world entities and
+      processes, synchronized at a specified frequency. This definition highlights the real-time data exchange and
+      feedback mechanisms that form the foundation of digital twin architectures. Nevertheless, the interpretation of
+      what constitutes a digital twin varies considerably between fields. In engineering and manufacturing, digital
+      twins are implemented as complete cyber-physical systems that combine sensors, actuators, and analytics models.
+      In contrast, in life sciences, a digital twin can refer to a computational model that represents biological or
+      physiological processes without necessarily being connected to a physical system.
+    </p>
+    <p>
+      This diversity of interpretation illustrates that the digital twin concept is use-case driven. Terms such as
+      <em>virtual twin</em>, <em>digital shadow</em>, and <em>digital thread</em> are often used interchangeably, yet they
+      describe different degrees of integration and functionality. The lack of a shared
+      theoretical framework complicates efforts to compare or integrate systems across disciplines.
+    </p>
+
+    <h2 class="font-bold">The DigiTwin Database</h2>
+    <p>
+      DigiTwin, a curated platform designed to organize, structure, and
+      centralize knowledge about digital twins across domains. Its purpose is to serve as a library of digital twin
+      components, a network of real-world examples, and a discovery tool for identifying gaps, patterns, and
+      opportunities in digital twin research.
+    </p>
+    <p>
+      The database records metadata, data and infrastructure information from both academic and industrial sources, including
+      performance metrics, readiness levels, maturity and use cases. It
+      also captures information on the stage of technological maturity using the Technology Readiness Level (TRL)
+      framework, ranging from TRL 1 (basic principles observed) to TRL 9 (system proven in operational environments).
+    </p>
+    <p>
+      A central element of the DigiTwin database is its use of a periodic table framework developed by Digital Twin Consortium, that categorises digital twin components based on shared capabilities and architectural
+      characteristics. This framework allows for a comparative understanding of maturity, interoperability, and
+      reusability across different scientific and industrial applications.
+    </p>
+    <p>
+      By adopting the FAIR data principles, the DigiTwin database aims
+      to overcome the fragmentation currently present in digital twin research. Most existing work is scattered across
+      publications and lacks standardized metadata. DigiTwin provides a foundation for systematic comparison and for
+      building reusable, interoperable systems.
+    </p>
+
+    <h2 class="font-bold">Challenges in Digital Twin Research</h2>
+    <p>
+      Digital twin research currently faces a number of challenges that limit collaboration and progress. Many projects
+      are developed in isolation within specific domains, with limited interoperability and inconsistent reporting
+      standards. Definitions, architectures, and maturity levels vary widely, and most systems are still in the early
+      stages of development.
+    </p>
+    <p>
+      One of the primary issues is the absence of standardised frameworks for describing and evaluating digital twins.
+      Without common reporting standards, it becomes difficult to address fundamental research questions, such as which
+      models or infrastructures are used in healthcare digital twins for predictive diagnostics, or how to distinguish
+      between physics-based and data-driven twins. Similarly, assessing resilience, reliability, and reproducibility
+      across systems remains a challenge.
+    </p>
+    <p>
+      Another barrier to progress is the lack of FAIR compliance. Without findable and interoperable metadata, knowledge
+      about digital twins remains siloed, making it difficult to discover, compare, or reuse existing systems. This
+      prevents the community from identifying common components or architectures that could accelerate innovation.
+    </p>
+
+    <h2 class="font-bold">Toward FAIR and Reproducible Digital Twin Infrastructures</h2>
+    <p>
+      The DigiTwin initiative advocates for the integration of FAIR principles into digital twin research and
+      development. The goal is not to impose a universal standard but to create a structured framework where digital
+      twins can be described, compared, and integrated systematically. Making digital twin data findable and reusable
+      allows researchers to identify common components, benchmark performance, and share architectural insights across
+      domains.
+    </p>
+    <p>
+      The open-access nature of the DigiTwin database supports transparency and collaboration. By collecting community
+      feedback and continuously expanding its coverage, the initiative promotes the development of reproducible and
+      interoperable digital twin systems. Furthermore, collaborations with organizations such as ELIXIR can strengthen
+      these efforts by providing shared ontologies, metadata standards, and infrastructures that support data exchange
+      and reproducibility in life sciences.
+    </p>
+  </main>
+</BaseLayout>

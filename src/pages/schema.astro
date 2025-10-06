@@ -1,21 +1,87 @@
-
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
+
+const base = import.meta.env.BASE_URL || "/";
+const schemaImage = base + "digitwin-schema.png";
 ---
-<BaseLayout title="Schema">
+
+<BaseLayout title="DigiTwin Schema">
   <Navbar slot="nav" />
-  <section class="mx-auto max-w-5xl px-6 py-12">
-    <h1 class="text-3xl font-bold">Schema</h1>
-    <ul class="list-disc pl-6 text-sm mt-4">
-      <li>trip_id (string)</li>
-      <li>person (string)</li>
-      <li>origin (string)</li>
-      <li>destination (string)</li>
-      <li>start_date (date)</li>
-      <li>end_date (date)</li>
-      <li>cost (number)</li>
-      <li>notes (string)</li>
+
+  <main class="mx-auto max-w-5xl px-6 py-12 prose prose-slate dark:prose-invert">
+    <h1 class="font-bold">DigiTwin Schema</h1>
+
+    <p>
+      The DigiTwin schema defines the structure of information stored in the DigiTwin database. 
+      It ensures every digital twin record includes consistent metadata, technical characteristics, and maturity details. 
+    
+    </p>
+
+    <figure class="my-10">
+      <img src={schemaImage} alt="DigiTwin schema overview diagram" class="rounded-xl shadow-md" />
+      <figcaption class="text-sm text-slate-500">
+        Modified version of the Digital Twin Consortium periodic table showing major digital twin infrastructure components.
+      </figcaption>
+    </figure>
+
+    <h2 class="font-bold">Schema Overview</h2>
+    <p>
+      Each registered digital twin entry is described by the following key sections:
+    </p>
+
+    <h3 class="font-bold">1. Paper Metadata</h3>
+    <ul>
+      <li>Paper title: Title of the publication associated with the digital twin.</li>
+      <li>Paper DOI: Digital Object Identifier for persistent citation and linking.</li>
+      <li>Paper abstract: Summary of the research or application described.</li>
     </ul>
-  </section>
+
+    <h3 class="font-bold">2. Digital Twin (DT) General Information</h3>
+    <ul>
+      <li>Biomodels ID: Identifier for biological or computational models linked to the twin.</li>
+      <li>DT performance metrics: Quantitative measures of how the twin performs (accuracy, latency, scalability, etc.).</li>
+      <li>DT readiness scale: Evaluation of the implementation maturity or completeness of the digital twin.</li>
+      <li>Scientific domain: The field or discipline (e.g., healthcare, engineering, materials science).</li>
+      <li>Stage of DT development: Based on the <em>Technology Readiness Level (TRL)</em> framework, ranging from TRL 1 – basic principles observed, to TRL 9 – system proven in operational environments.</li>
+      <li>Type of Digital Twin: Describes the model class (e.g., physics-based, data-driven, or hybrid twin).</li>
+      <li>Use case: The real-world system or problem the digital twin represents.</li>
+    </ul>
+
+    <h3 class="font-bold">3. Technology Readiness Level (TRL)</h3>
+    <p>
+      TRL is a standardized framework used to assess the maturity level of a technology, including digital twin solutions.  
+      It ranges from <strong>TRL 1</strong> (basic principles observed) to <strong>TRL 9</strong> (actual system proven in operational environment).  
+      This helps compare digital twins across domains and identify development gaps.
+    </p>
+
+    <h3 class="font-bold">4. Periodic Table Framework</h3>
+    <p>
+      The right-hand figure is adapted from the Digital Twin Consortium Periodic Table.  
+      It categorizes digital twin components into capability areas that describe infrastructure and functional services.  
+      Major blocks include:
+    </p>
+
+    <ul>
+      <li><strong>Data Services:</strong> Acquisition, streaming, transformation, storage, and archiving of data required for twin operation.</li>
+      <li><strong>Integration:</strong> APIs, system integration, and interoperability layers connecting different tools and devices.</li>
+      <li><strong>Intelligence:</strong> Simulation, artificial intelligence, and machine learning services that drive predictive and prescriptive analytics.</li>
+      <li><strong>Management:</strong> Event logging, data governance, privacy, and lifecycle management of twin data.</li>
+      <li><strong>Trustworthiness:</strong> Security, reliability, and resilience of digital twin systems.</li>
+      <li><strong>User Experience (UX):</strong> Visualization, dashboards, augmented or virtual reality, and interaction interfaces.</li>
+    </ul>
+
+    <h3 class="font-bold">5. Purpose of the Schema</h3>
+    <p>
+      This schema is domain agnostic schema, supporting the discovery, classification, and benchmarking of digital twins across disciplines.  
+      By enforcing a consistent structure, it enables cross-domain comparison, interoperability, and reuse of digital twin data.  
+      Researchers and developers can easily locate twins by domain, type, or readiness level and contribute new entries in a standardized format.
+    </p>
+
+    <p>
+      Together, these schema elements form the foundation for a FAIR-compliant registry of digital twins, one that promotes transparency, collaboration, and reproducibility in digital twin research.
+    </p>
+
+    <p><strong>For the data, we are currently working on a data schema allowing researchers to add data used for their digital twin.</strong></p>
+  </main>
 </BaseLayout>

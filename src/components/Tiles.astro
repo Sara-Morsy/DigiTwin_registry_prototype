@@ -1,21 +1,30 @@
 ---
-const tiles = [
-  { href: '/explore',  title: 'Explore the database',            desc: 'Browse and query data' },
-  { href: '/what-is',  title: 'What is DigiTwin?',               desc: 'Overview & documentation' },
-  { href: '/register', title: 'Register your Digital Twin',      desc: 'Submit your twin metadata' },
-  { href: '/schema',   title: 'Schema for DigitalTwin',          desc: 'Columns & types' },
-];
+const base = import.meta.env.BASE_URL || "/";
+const { compact = true } = Astro.props;
+const pad = compact ? "py-8" : "py-12";
+const gap = compact ? "gap-4" : "gap-6";
 ---
-<section class="mx-auto max-w-6xl px-6 py-16">
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    {tiles.map((t) => (
-      <a href={t.href} class="aspect-square rounded-2xl border bg-white p-4 flex items-center justify-center hover:bg-slate-50">
-        <div class="text-center">
-          <div class="text-lg font-semibold">{t.title}</div>
-          <p class="text-sm text-slate-600">{t.desc}</p>
-        </div>
-      </a>
-    ))}
+
+<section class={`mx-auto max-w-6xl px-6 ${pad}`}>
+  <div class={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ${gap}`}>
+    <a href={base + "explore/"} class="block rounded-2xl border border-slate-200 p-6 hover:shadow-md">
+      <h3 class="font-semibold">Explore the database</h3>
+      <p class="text-sm text-slate-500 mt-1">Browse and query data</p>
+    </a>
+
+    <a href={base + "what-is/"} class="block rounded-2xl border border-slate-200 p-6 hover:shadow-md">
+      <h3 class="font-semibold">What is DigiTwin?</h3>
+      <p class="text-sm text-slate-500 mt-1">Overview &amp; documentation</p>
+    </a>
+
+    <a href={base + "register/"} class="block rounded-2xl border border-slate-200 p-6 hover:shadow-md">
+      <h3 class="font-semibold">Register your Digital Twin</h3>
+      <p class="text-sm text-slate-500 mt-1">Submit your twin metadata</p>
+    </a>
+
+    <a href={base + "schema/"} class="block rounded-2xl border border-slate-200 p-6 hover:shadow-md">
+      <h3 class="font-semibold">Schema for DigitalTwin</h3>
+      <p class="text-sm text-slate-500 mt-1">Columns &amp; types</p>
+    </a>
   </div>
 </section>
-

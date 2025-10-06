@@ -1,18 +1,30 @@
 ---
 /**
  * Hero.astro
- * Minimal hero with gradient background and a big headline.
+ * Enhanced hero with gradient background, headline, and optional CTA buttons.
+ *
  * Props:
- *  - title   (string) : main heading text
- *  - kicker  (string) : small pill text above the title (optional)
- *  - showKicker (boolean) : set false to hide the kicker
+ *  - title              (string): main heading text
+ *  - kicker             (string): small pill text above the title (optional)
+ *  - showKicker         (boolean): set false to hide the kicker
+ *  - primaryCtaLabel    (string): label for primary button (optional)
+ *  - primaryCtaHref     (string): link for primary button (optional)
+ *  - secondaryCtaLabel  (string): label for secondary button (optional)
+ *  - secondaryCtaHref   (string): link for secondary button (optional)
  */
+
+const base = import.meta.env.BASE_URL || "/";
+
 const {
-  title = 'DigiTWIN: building the foundation for the future of digital twins',
-  kicker = 'Astro ♥ digiTwin',
+  title = "DigiTWIN: building the foundation for the future of digital twins",
   showKicker = false,
+  primaryCtaLabel = "What is DigiTwin?",
+  primaryCtaHref = base + "what-is/",
+  secondaryCtaLabel = "Explore the database",
+  secondaryCtaHref = base + "explore/",
 } = Astro.props;
 ---
+
 <section class="relative overflow-hidden text-white bg-gradient-to-b from-indigo-700 via-violet-700 to-slate-900">
   <div class="mx-auto max-w-6xl px-6 pt-20 pb-16 text-center">
     {showKicker && (
@@ -20,12 +32,33 @@ const {
         {kicker}
       </span>
     )}
+
     <h1 class="mt-6 text-4xl sm:text-6xl font-extrabold tracking-tight">
       {title}
     </h1>
+
+    {(primaryCtaLabel || secondaryCtaLabel) && (
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+        {primaryCtaLabel && (
+          <a
+            href={primaryCtaHref}
+            class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold bg-white text-slate-900 hover:bg-white/90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+          >
+            {primaryCtaLabel}
+          </a>
+        )}
+        {secondaryCtaLabel && (
+          <a
+            href={secondaryCtaHref}
+            class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-base font-semibold border border-white/40 text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2"
+          >
+            {secondaryCtaLabel}
+          </a>
+        )}
+      </div>
+    )}
   </div>
 
   <!-- subtle radial glow -->
   <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.15),transparent_60%)]"></div>
 </section>
-

@@ -1,51 +1,58 @@
 ---
 /**
- * BrandBanner.astro
- * A centered brand/logo band placed between sections.
+ * BrandBanner.astro — full-width logo band
  *
  * Props:
- *  - src        (string)  : image path (defaults to /digitwin-logo.png in /public)
- *  - alt        (string)  : accessible alt text
- *  - href       (string?) : wrap the logo in a link (optional)
- *  - caption    (string?) : small text under the logo (optional)
- *  - bg         (string)  : background classes (default "bg-white")
- *  - pad        (string)  : padding classes (default "py-10 sm:py-12 lg:py-16")
- *  - maxW       (string)  : container max width (default "max-w-6xl")
- *  - sizes      (string)  : responsive sizes attr (default "(min-width:1024px) 28rem, (min-width:640px) 20rem, 16rem")
- *  - className  (string)  : extra classes for the <img> (merges with defaults)
- *
- * Usage:
- *  <BrandBanner />
- *  <BrandBanner href="/" caption="DigiTWIN" />
+ *  - src       (string)  : image path (default: /digitwin-logo.png from /public)
+ *  - alt       (string)  : accessible alt text
+ *  - href      (string?) : wrap the logo in a link (optional)
+ *  - caption   (string?) : small text under the logo (optional)
+ *  - compact   (boolean) : less vertical padding (default: true)
+ *  - size      ("xs"|"sm"|"md"|"lg"|"xl"): logo width preset (default: "md")
+ *  - bg        (string)  : background classes (default: "bg-white")
+ *  - maxW      (string)  : container width (default: "max-w-6xl")
+ *  - className (string)  : extra classes merged on the <img>
+ *  - divider   (boolean) : add a subtle top border (default: false)
  */
+
+const base = import.meta.env.BASE_URL || "/";
+
 const {
-  src = import.meta.env.BASE_URL + "digitwin-logo.png",
+  src = base + "digitwin-logo.png",
   alt = "DigiTWIN logo",
   href = "",
   caption = "",
+  compact = true,
+  size = "md",
   bg = "bg-white",
-  pad = "py-10 sm:py-12 lg:py-16",
   maxW = "max-w-6xl",
-  sizes = "(min-width:1024px) 28rem, (min-width:640px) 20rem, 16rem",
   className = "",
+  divider = false,
 } = Astro.props;
 
-const imgClasses =
-  `w-64 sm:w-80 lg:w-[48rem] h-auto max-w-full` +
-  (className ? ` ${className}` : "");
+const pad = compact ? "py-6" : "py-12 lg:py-16";
+
+const sizeMap = {
+  xs: "w-32 sm:w-40",
+  sm: "w-44 sm:w-56 lg:w-64",
+  md: "w-56 sm:w-64 lg:w-72",
+  lg: "w-64 sm:w-80 lg:w-[28rem]",
+  xl: "w-72 sm:w-[28rem] lg:w-[36rem]",
+};
+
+const imgClasses = `${sizeMap[size] ?? sizeMap.md} h-auto max-w-full${className ? ` ${className}` : ""}`;
 ---
 
-<section class={bg}>
-  <div class={`mx-auto ${maxW} px-6 ${pad} flex flex-col items-center justify-center text-center`}>
+<section class={`${bg} ${divider ? "border-t border-slate-200" : ""}`}>
+  <div class={`mx-auto ${maxW} px-6 ${pad} flex flex-col items-center text-center`}>
     {href ? (
       <a href={href} class="inline-block" aria-label={alt}>
-        <img src={src} alt={alt} class={imgClasses} sizes={sizes} loading="eager" decoding="async" />
+        <img src={src} alt={alt} class={imgClasses} loading="eager" decoding="async" />
       </a>
     ) : (
-      <img src={src} alt={alt} class={imgClasses} sizes={sizes} loading="eager" decoding="async" />
+      <img src={src} alt={alt} class={imgClasses} loading="eager" decoding="async" />
     )}
-    {caption && (
-      <p class="mt-3 text-sm text-slate-500">{caption}</p>
-    )}
+
+    {caption && <p class="mt-2 text-sm text-slate-500">{caption}</p>}
   </div>
 </section>
